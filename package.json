@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Buscador de Pelicuals hospedadas en OMDb",
   "main": "index.js",
-  
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -13,6 +12,7 @@
     "axios": "^0.21.1",
     "babel-cli": "^6.18.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",

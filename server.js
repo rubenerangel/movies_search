@@ -1,9 +1,11 @@
-const express = require('express');
+const express     = require('express');
+const bodyParser  = require('body-parser');
 
 /* Consultamos las variables de conexión */
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/config/config.json')[env];
+const env       = process.env.NODE_ENV || 'development';
+const config    = require(__dirname + '/config/config.json')[env];
 const Sequelize = require('sequelize');
+const configjs  = require('./config/config');
 
 const sequelize = new Sequelize(
   config.database,
@@ -21,13 +23,12 @@ const app = express();
 
 /* Settings */
 const port = 3001;
+app.set('token', configjs.TOKEN_SECRET);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 /* Rutas */
 app.use('/', route);
-
-// app.get('/', (req, res) => res.status(200).send({
-//   message: 'Welcome to the beginning of nothingness.',
-// }));
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
@@ -39,7 +40,4 @@ app.listen(port, () => {
     .catch(error => {
       console.log(error);
     })
-
 });
-
-

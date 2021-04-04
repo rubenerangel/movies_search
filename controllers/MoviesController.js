@@ -1,4 +1,4 @@
-const Movie = require('../models/').movie;
+const Movie         = require('../models/').movie;
 const getMoviesOMDB = require('../services/index.js');
 
 module.exports = {
@@ -7,17 +7,15 @@ module.exports = {
     
     if (!allMovies.length) {
       let moviesOMDB = await getMoviesOMDB(1);
-
+      
       let pagMoviesOMDB = moviesOMDB.totalResults/10;
 
       pagMoviesOMDB = Math.ceil(pagMoviesOMDB) + 1;
 
       for (let index = 1; index < pagMoviesOMDB; index++) {
-       
         let moviesPerPage = await getMoviesOMDB(index);
         
         moviesPerPage.Search.forEach(movie => {
-          
           Movie
             .create({
               'title':  movie.Title,
@@ -26,14 +24,20 @@ module.exports = {
               'type':   movie.Type,
               'poster': movie.Poster,
             })
-            .then(movie => console.log(movie))
+            .then(movie => movie.created)
             .catch(error => console.log(error));
-
         });
       }
+
+      return Movie.findAll({})
+        .then(movie => res.status(200).send(movie)
+        )
+        .catch(error => console.log(error));
     } else {
       return Movie.findAll({})
-        .then(movie => res.status(200).send(movie))
+        .then(movie => res.status(200).send(movie)
+        )
+        .catch(error => console.log(error));
     }
   },
 };
