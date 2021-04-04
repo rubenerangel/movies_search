@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('movies');
+    await queryInterface.dropTable('movies_ruben');
   }
 };
