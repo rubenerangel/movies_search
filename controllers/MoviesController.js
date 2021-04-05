@@ -1,5 +1,7 @@
 const Movie         = require('../models/').movie;
 const getMoviesOMDB = require('../services/index.js');
+const token = require('../services/token.js');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
    async index(req,res) {
@@ -35,9 +37,21 @@ module.exports = {
         .catch(error => console.log(error));
     } else {
       return Movie.findAll({})
-        .then(movie => res.status(200).send(movie)
+        .then(movie => res.json(movie)
         )
         .catch(error => console.log(error));
     }
   },
+
+  getToken(req, res) {
+    /* Creación del Token */
+    const payload = {
+			check:  true
+		};
+    const token = jwt.sign(payload, req.app.settings.token, {
+			expiresIn: 1440
+		});
+
+    res.json({token})
+  }
 };

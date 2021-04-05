@@ -16,7 +16,7 @@ routeMiddleware.use((req, res, next) => {
 			expiresIn: 1440
 		});
 
-    // console.log(tokenInit);
+    console.log(tokenInit);
 
     jwt.verify(token, req.app.settings.token, (err, decoded) => {
       if ( err ) {
@@ -33,7 +33,8 @@ routeMiddleware.use((req, res, next) => {
   }
 });
 
-route.get('/', routeMiddleware, moviesController.index);
-route.get('/api/v1/movies', routeMiddleware, moviesController.index);
+route.get('/', moviesController.index);
+route.get('/api/v1/movies', moviesController.index);
+route.get('/token', moviesController.getToken);
 
 module.exports = route;
