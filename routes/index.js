@@ -35,6 +35,6 @@ routeMiddleware.use((req, res, next) => {
 
 route.get('/', moviesController.index);
 route.get('/api/v1/movies', moviesController.index);
-route.get('/token', moviesController.getToken);
+// route.get('/token', routeMiddleware, moviesController.getToken);
 
 module.exports = route;
