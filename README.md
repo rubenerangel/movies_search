@@ -1,4 +1,4 @@
-# movies_search
+# Movies Search - NodeJs, Express, Sequelize
 
 Buscador de películas alojadas en OMDb
 
