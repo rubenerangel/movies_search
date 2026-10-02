@@ -16,7 +16,7 @@
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
